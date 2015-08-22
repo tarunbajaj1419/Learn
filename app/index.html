@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Learning Angular</title>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+<script src="scripts/vendor/angular.min.js"></script>
+<script src="scripts/app.js"></script>
+
+<link rel="stylesheet" href="css/app.css">
+
+Hello {{ctrl.msg}}, Work hard on AngularJS.
+
+<button ng-click="ctrl.changeMessage()">
+    Change Message
+</button>
+
+<div ng-repeat="item in ctrl.items" ng-class="ctrl.getDoneClass(item)">
+    <span class="label"> {{item.label}}</span>
+    <span class="author" ng-bind="item.done"></span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.done {
+    background-color: green;
+}
+.pending {
+    background-color: red;
+}
+
+.finished {
+    background-color: green;
+}
+.unfinished {
+    background-color: red;
+}
