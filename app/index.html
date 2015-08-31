@@ -10,16 +10,48 @@
 
 <link rel="stylesheet" href="css/app.css">
 
-Hello {{ctrl.msg}}, Work hard on AngularJS.
+<form ng-submit="ctrl.submit()" name="myForm">
+    <input type="text"
+           name="uname"
+           ng-model="ctrl.user.username"
+           required
+           ng-minlength="4">
+<span ng-show="myForm.$dirty && myForm.uname.$error.required">
+This is a required field
+</span>
+<span ng-show="myForm.$dirty && myForm.uname.$error.minlength">
+Minimum length required is 4
+</span>
+<span ng-show="myForm.$dirty && myForm.uname.$invalid">
+This field is invalid
+</span>
+    <input type="password"
+           name="pwd"
+           ng-model="ctrl.user.password"
+           required>
+<span ng-show="myForm.pwd.$error.required">
+This is a required field
+</span>
+    <input type="submit"
+           value="Submit"
+           ng-disabled="myForm.$invalid">
+</form>
 
-<button ng-click="ctrl.changeMessage()">
-    Change Message
-</button>
-
-<div ng-repeat="item in ctrl.items" ng-class="ctrl.getDoneClass(item)">
-    <span class="label"> {{item.label}}</span>
-    <span class="author" ng-bind="item.done"></span>
+<div>
+    <select ng-model="ctrl.selectedCountryId"
+            ng-options="c.id as c.label for c in ctrl.countries">
+    </select>
+    Selected Country ID : {{ctrl.selectedCountryId}}
 </div>
+
+<div>
+    <select ng-model="ctrl.selectedCountry"
+            ng-options="c.label for c in ctrl.countries">
+    </select>
+
+    Selected Country : {{ctrl.selectedCountry}}
+</div>
+
 
 </body>
 </html>

@@ -11,3 +11,14 @@
 .unfinished {
     background-color: red;
 }
+
+
+.ng-valid {
+    background-color: green;
+}
+.ng-dirty.ng-invalid-required {
+    background-color: red;
+}
+.ng-dirty.ng-invalid-minlength {
+    background-color: lightpink;
+}

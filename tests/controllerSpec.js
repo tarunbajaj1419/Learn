@@ -6,10 +6,17 @@ describe('Controller: MainCtrl', function () {
 
     beforeEach(module('myApp'));
 
-    var ctrl;
+    var ctrl, $loc, http;
 
-    beforeEach(inject(function ($controller) {
+    beforeEach(inject(function ($controller, $location, $httpBackend) {
+
+
         ctrl = $controller('MainCtrl');
+        $loc = $location;
+
+        http = $httpBackend;
+        http.expectGET('/api/note').respond([{id: 1, label: 'Mock'}]);
+
     }));
 
     it('should have items available on load', function () {
@@ -36,4 +43,16 @@ describe('Controller: MainCtrl', function () {
         expect(actualClass.unfinished).toBeTruthy();
     });
 
+    it('should navigate', function(){
+        $loc.path('/some');
+        ctrl.navigate();
+        expect($loc.path()).toEqual('/some/where');
+    });
+
+    it('should load items from server', function() {
+        expect(ctrl.items).toEqual([]);
+
+        http.flush();
+        expect(ctrl.items).toEqual([{id: 1, label: 'Mock'}]);
+    });
 });
